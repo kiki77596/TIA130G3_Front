@@ -7947,6 +7947,11 @@ heding animation  end
   padding: 163px 0;
   overflow: hidden;
   text-align: center;
+
+  background-size: cover; /* 确保图片覆盖整个容器 */
+  background-position: center; /* 图片居中显示 */
+  background-repeat: no-repeat; /* 防止背景图片重复 */
+  
 }
 
 /* Large devices */
