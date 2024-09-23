@@ -19432,10 +19432,12 @@ span.select2-selection.select2-selection--single:focus {
 }
 
 .tour-box_img img {
-  width: 100%;
+  /* width: 100%; */
   border-radius: 16px 16px 0 0;
   -webkit-transition: 1.3s all ease;
   transition: 1.3s all ease;
+  object-fit: cover; /* 確保圖片填滿容器 */
+  height: 200px; /* 設定固定高度 */
 }
 
 .tour-box .tour-content {
@@ -19583,6 +19585,7 @@ span.select2-selection.select2-selection--single:focus {
 }
 
 .tour-card .tour-content {
+ 
   position: absolute;
   top: var(--space);
   left: var(--space);
@@ -22546,5 +22549,3 @@ span.select2-selection.select2-selection--single:focus {
   margin: -35px 0;
   z-index: 8;
 }
-
-/*# sourceMappingURL=style.css.map */
