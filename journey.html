@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         body {
+
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
@@ -85,18 +86,22 @@ input:-webkit-autofill {
     margin-bottom: 10px;
     font-size: 18px;
 }
+
     </style>
 </head>
 
 <body>
 
+
     <h2>報名資料填寫</h2>
 
     <form action="/submit" method="POST" enctype="multipart/form-data">
+
         <!-- <label for="birthday">出發日期:</label>
         <input type="text" id="birthday" name="birthday" required> -->
         
         <label for="name">姓名:</label>
+
         <input type="text" id="name" name="name" class="form-field" required>
         
         <label for="address">地址:</label>
@@ -123,6 +128,7 @@ input:-webkit-autofill {
 
         <br>
         <br>
+
         <input type="submit" value="送出">
         <input type="reset" value="清空">
     </form>
