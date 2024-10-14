@@ -207,10 +207,209 @@
     }
   }
   
+/* --========= 折扣碼 ============-*/
 
+/* 整體樣式 */
+cupon {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
 
+/* 容器樣式 */
+.flex {
+  display: flex;
+}
 
+.flex-col {
+  flex-direction: column;
+}
 
+.justify-between {
+  justify-content: space-between;
+}
 
+.items-center {
+  align-items: center;
+}
 
+.bg-white {
+  background-color: #ffffff;
+}
+
+.rounded-soft {
+  border-radius: 12px;
+}
+
+.h-[175px] {
+  height: 175px;
+}
+
+.w-[825px] {
+  width: 825px;
+}
+
+.pt-5 {
+  padding-top: 20px;
+}
+
+.mb-[15px] {
+  margin-bottom: 15px;
+}
+
+/* 標題和文字樣式 */
+.font-bold {
+  font-weight: bold;
+}
+
+.text-2xl {
+  font-size: 24px;
+}
+
+.text-gray-900 {
+  color: #1a1a1a;
+}
+
+.text-sm {
+  font-size: 14px;
+}
+
+.text-gray {
+  color: #888888;
+}
+
+.pl-[30px] {
+  padding-left: 30px;
+}
+
+.pr-6 {
+  padding-right: 24px;
+}
+
+.mb-1.5 {
+  margin-bottom: 6px;
+}
+
+/* 按鈕和輸入框樣式 */
+.ez-input {
+  width: 500px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.ez-btn {
+  padding: 10px 20px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ez-btn:hover {
+  background-color: #16a34a;
+}
+
+.primary-lg {
+  font-size: 16px;
+  min-width: 100px;
+}
+
+/* 分隔線 */
+.border-t-2 {
+  border-top: 2px solid #f0f0f0;
+}
+
+.pt-2 {
+  padding-top: 8px;
+}
+
+/* Tab 樣式 */
+.discount-tab {
+  display: flex;
+}
+
+.ez-tab-content {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+.ez-tab-item {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.ez-tab-item:hover {
+  color: #22c55e;
+}
+
+.active .ez-tab-item {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+/* 說明連結樣式 */
+.text-gray-900 {
+  color: #1a1a1a;
+}
+
+.text-green-dark {
+  color: #16a34a;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-sm {
+  font-size: 14px;
+}
+
+.w-[18px] {
+  width: 18px;
+}
+
+.pb-2 {
+  padding-bottom: 8px;
+}
+
+/* 圖片樣式 */
+.no-coupons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.no-coupons img {
+  width: 100px;
+  height: 100px;
+}
+
+.no-coupons p {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+.no-coupons a {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #22c55e;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.no-coupons a:hover {
+  background-color: #16a34a;
+}
 
