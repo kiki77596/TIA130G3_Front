@@ -48,7 +48,7 @@
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://unpkg.com/vue-router@4"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="./ourFile/shop/js/shop.js"></script>
+
 </head>
 
 <body>
@@ -106,8 +106,13 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="destination.html">Destination</a></li>
-                    <!-- TODO  -->
-                    <li><a href="#">Shop</a></li>
+                    <li class="menu-item-has-children">
+                        <a href="#">Shop</a>
+                        <ul class="sub-menu">
+                            <li><a href="#/">Shop</a></li>
+                            <li><a href="#/cart">Cart</a></li>
+                        </ul>
+                    </li>
                     <!-- <li><a href="error.html">Error Page</a></li> -->
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="about.html">About Us</a></li>
@@ -161,9 +166,13 @@
                                 <ul>
                                     <li><a href="index.html">Home</a></li>
                                     <li><a href="destination.html">Destination</a></li>
-
-                                    <li><a href="#">Shop</a></li>
-                                    <!-- <li><a href="error.html">Error Page</a></li> -->
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Shop</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="#/">Shop</a></li>
+                                            <li><a href="#/cart">Cart</a></li>
+                                        </ul>
+                                    </li>
                                     <li><a href="faq.html">FAQ</a></li>
                                     <li><a href="about.html">About Us</a></li>
                                 </ul>
@@ -190,18 +199,19 @@
     </div>
 
     <script type="module">
-        // TODO
-        import { getProducts } from './ourFile/shop/js/shop.js';
-        import { addTocart } from './ourFile/shop/js/shop.js';
-        import { removeFromcart } from './ourFile/shop/js/shop.js'
-        import { cartUpdate } from './ourFile/shop/js/shop.js'
-        import { valueEncryption } from './ourFile/shop/js/shop.js'
-        import { valueDecryption } from './ourFile/shop/js/shop.js'
-        import { getPublickey } from './ourFile/shop/js/shop.js'
-        import { prodKeys } from './ourFile/shop/js/shop.js'
+        import { getProducts } from './js/shop.js';
+        import { getProduct } from './js/shop.js';
+        import { addTocart } from './js/shop.js';
+        import lodash from 'https://cdn.jsdelivr.net/npm/lodash@4.17.21/+esm'
+        import { updateCart } from './js/shop.js'
+        import { totalUpdate } from './js/shop.js'
+        import { insertOrder } from './js/shop.js'
+        window.accessControl = Vue.reactive({
+            canAccessCheckout: false
+        });
         const prod_view = {
             template: `
-            <div class="breadcumb-wrapper " style="background-image:url(assets/img/bg/breadcumb-bg1.jpg)">
+            <div class="breadcumb-wrapper " style="background-image:url(assets/img/bg/breadcumb-bg.jpg)">
                 <div class="container">
                     <div class="breadcumb-content">
                         <h1 class="breadcumb-title">Shops</h1>
@@ -221,9 +231,9 @@
                                     <div v-for="(item, index) in prod" :key="index" class="col-xl-3 col-sm-6">
                                         <div class="th-product product-grid">
                                             <div class="product-img">
-                                                <img src="assets/img/product/product_1_8.png" alt="Product Image">
+                                                <img :src="item.img1" alt="Product Image">
                                                 <div class="actions">
-                                                    <router-link to="/detail" @click="selectProd(item)">
+                                                    <router-link :to="{ name: 'prod_detail', params: { id: item.id } }">
                                                         <div class="icon-btn popup-content"><i class="far fa-eye"></i></div>
                                                     </router-link>
                                                     <div class="icon-btn" @click="addProd(item)"><i class="far fa-cart-plus"></i></div>
@@ -231,7 +241,7 @@
                                             </div>
                                             <div class="product-content">
                                                 <h3 class="product-title">
-                                                    <router-link to="/detail" @calss="selectProd(item)">{{ item.name }}</router-link>
+                                                    <router-link :to="{ name: 'prod_detail', params: { id: item.id } }">{{ item.name }}</router-link>
                                                 </h3>
                                                 <span class="price">$ {{ item.price }}</span>
                                             </div>
@@ -247,28 +257,12 @@
             data() {
                 return {
                     prod: [],
-                    bg: "assets/img/bg/breadcumb-bg.jpg"
                 }
             },
             methods: {
                 addProd(item) {
-                    addTocart(item, 1, 1);
+                    addTocart(item, 1, "existIncrease");
                 },
-                selectProd(item) {
-                    try {
-
-                        const id = valueEncryption(String(item.id), getPublickey(prodKeys().id));
-                        const name = valueEncryption(item.name, getPublickey(prodKeys().name));
-                        const price = valueEncryption(String(item.price), getPublickey(prodKeys().price));
-
-                        sessionStorage.setItem(getPublickey(prodKeys().id), id);
-                        sessionStorage.setItem(getPublickey(prodKeys().name), name);
-                        sessionStorage.setItem(getPublickey(prodKeys().price), price);
-                        // sessionStorage.setItem('imgs', JSON.stringify(item.imgs));
-                    } catch (error) {
-                        console.log("Error: ", error);
-                    }
-                }
             },
             async mounted() {
                 try {
@@ -293,7 +287,6 @@
                     </div>
                 </div>
             </div>
-            <h2>{{id}}</h2>
             <section class="product-details space-top space-extra-bottom">
                 <div class="container">
                     <div class="row gx-60">
@@ -310,12 +303,10 @@
                                     <div class="quantity">
                                         
                                         <input type="number" class="qty-input" :value="qty">
-                                        <button class="quantity-plus qty-btn" @click="qtyUp"><i class="far fa-chevron-up"></i></button>
-                                        <button class="quantity-minus qty-btn"@click="qtyDown" ><i class="far fa-chevron-down"></i></button>
+                                        <button class="quantity-plus qty-btn" @click="qtyIncrease"><i class="far fa-chevron-up"></i></button>
+                                        <button class="quantity-minus qty-btn"@click="qtyDecrease" ><i class="far fa-chevron-down"></i></button>
                                     </div>
-                                    <router-link to="/cart">
-                                        <button class="th-btn" @click="addProd">Add to Cart</button>
-                                    </router-link>
+                                    <button class="th-btn" @click="updateCart">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -336,43 +327,24 @@
                 }
             },
             methods: {
-                qtyUp() {
-                    console.log("up");
-                    if (this.qty < 99)
-                        this.qty++;
-                    else
-                        this.qty--;
+                qtyIncrease() {
+                    this.qty < 99 ? this.qty++ : this.qty--;
                 },
-                qtyDown() {
-                    console.log("down");
-                    if (this.qty > 1)
-                        this.qty--;
-                    else
-                        this.qty = 1;
+                qtyDecrease() {
+                    this.qty > 1 ? this.qty-- : this.qty = 1;
                 },
-                addProd() {
-                    if (this.prod.id === 0)
-                        this.prod.id = this.$route.query.id;
-
-                    console.log("detail prod ", this.prod);
-                    addTocart(this.prod, this.qty, 1);
+                updateCart() {
+                    addTocart(this.prod, this.qty, "Increase");
                 }
             },
-            mounted() {
-
-                let value = sessionStorage.getItem(getPublickey(prodKeys().id));
-                this.prod.id = parseInt(valueDecryption(value, getPublickey(prodKeys().id)), 10);
-
-                value = sessionStorage.getItem(getPublickey(prodKeys().name));
-                this.prod.name = valueDecryption(value, getPublickey(prodKeys().name));
-
-                value = sessionStorage.getItem(getPublickey(prodKeys().price));
-                this.prod.price = valueDecryption(value, getPublickey(prodKeys().price));
-
-                if (sessionStorage.getItem('imgs') == null)
-                    this.prod.imgs = [""];
-                else
-                    this.prod.imgs = JSON.parse(sessionStorage.getItem('imgs'));
+            async mounted() {
+                let prod = await getProduct(this.$route.params.id);
+                this.prod.id = prod.id;
+                this.prod.name = prod.name;
+                this.prod.price = prod.price;
+                this.prod.imgs = [prod.img1, prod.img2, prod.img3];
+                const cart = JSON.parse(localStorage.getItem("cart"));
+                this.qty = cart.find(obj => obj.id === this.prod.id).qty;
             },
         }
         const cart_view = {
@@ -390,7 +362,7 @@
                 </div>
             </div>
 
-            <div class="th-cart-wrapper  space-top space-extra-bottom">
+            <div class="th-cart-wrapper" style="padding-top:40px">
                 <div class="container">
                     <div class="woocommerce-notices-wrapper">
                         <div class="woocommerce-message">Shipping costs updated.</div>
@@ -400,19 +372,25 @@
                             <thead>
                                 <tr>
                                     <th class="cart-col-image">圖片</th>
-                                    <th class="cart-col-productname">名稱</th>
+                                    <th class="cart-col-productname">商品名稱</th>
                                     <th class="cart-col-price">單價</th>
                                     <th class="cart-col-quantity">數量</th>
-                                    <th class="cart-col-total">總價</th>
+                                    <th class="cart-col-total">價格</th>
                                     <th class="cart-col-remove">移除</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="cart item" v-for="(item,index) in cart" :key="index">
                                     <td data-title="Product">
-                                        <img width="91" height="91" :src="item.imgs[0]" alt="Image">
+                                        <router-link :to="{ name: 'prod_detail', params: { id: item.id }}">
+                                            <img width="91" height="91" :src="item.imgs" alt="Image">
+                                        </router-link>
                                     </td>
-                                    <td data-title="Name">{{item.name}}</td>
+                                        <td data-title="Name">
+                                            <router-link :to="{ name: 'prod_detail', params: { id: item.id }}">
+                                            {{item.name}}
+                                            </router-link>
+                                        </td>
                                     <td data-title="Price">
                                         <span class="amount"><bdi><span>$</span>{{item.price}}</bdi></span>
                                     </td>
@@ -430,7 +408,6 @@
                                         <i class="remove fal fa-trash-alt" @click="removeProd(item)"></i>
                                     </td>
                                 </tr>
-                                
                                 <tr>
                                     <td colspan="6" class="actions">
                                         <router-link to="/">
@@ -444,7 +421,26 @@
 
                     <div class="row justify-content-end">
                         <div class="col-md-8 col-lg-7 col-xl-6">
+                            <h2 class="h4 summary-title">Cart Totals</h2>
+                            <table class="cart_totals">
+                                <tfoot>
+                                    <tr class="order-total">
+                                        <td>Order Total</td>
+                                        <td data-title="Total">
+                                            <strong><span class="amount"><bdi><span>$</span>{{total}}</bdi></span></strong>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                             
+                            <div class="wc-proceed-to-checkout mb-30">
+                                <router-link to="" @click="proceedToCheckout()">
+                                    <div class="th-btn">
+                                        Proceed to checkout
+                                    </div>
+                                </router-link>
+                            </div>
+
                         </div>
                     </div>
 
@@ -453,49 +449,281 @@
             `,
             data() {
                 return {
-                    cart: []
+                    cart: [],
+                    total: 0
                 }
             },
             methods: {
                 qtyIncrease(item) {
-                    cartUpdate(item, "Increase");
+                    item.qty < 99 ? item.qty++ : item.qty--;
+                    this.total = totalUpdate(this.cart);
                 },
                 qtyDecrease(item) {
-                    cartUpdate(item, "Decrease");
+                    item.qty > 1 ? item.qty-- : item.qty = 1;
+                    this.total = totalUpdate(this.cart);
                 },
                 removeProd(item) {
-                    removeFromcart(item);
+                    updateCart(item, "remove");
                     this.cart = JSON.parse(localStorage.getItem('cart'));
+                    this.total = totalUpdate(this.cart);
+                },
+                proceedToCheckout() {
+
+
+                    if (!lodash.isEmpty(localStorage.getItem('cart'))) {
+                        localStorage.setItem('cart', JSON.stringify(this.cart));
+                        window.accessControl.canAccessCheckout = true;
+                        this.$router.push("/checkout");
+                    } else {
+                        alert('購物車是空的，請先添加商品。');
+                    }
                 }
             },
             mounted() {
                 this.cart = JSON.parse(localStorage.getItem("cart"));
+                console.log(this.cart);
+                this.total = totalUpdate(this.cart);
             },
-            watch: {
-                cart(newValue, oldValue) {
-                    if (newValue.length != oldValue)
-                        console.log("watch");
-                }
-            }
         };
-        const order_view = {
+        const chekcout = {
+            template: `
+            <div class="breadcumb-wrapper " style="background-image:url(assets/img/bg/breadcumb-bg.jpg)">
+                <div class="container">
+                    <div class="breadcumb-content">
+                        <h1 class="breadcumb-title">Checkout</h1>
+                        <ul class="breadcumb-menu">
+                            <li><a href="index.html">Home</a></li>
+                            <li><router-link to="/">Shops</router-link></li>
+                            <li>checkout</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="th-checkout-wrapper">
+                <div class="container">
+                    <div class="woocommerce-checkout mt-40">
+                        <div class="row ">
+                            <div class="col-lg-6">
+                                <h2 class="h4">會員資料</h2>
+                                <div class="row">
+                                    <div class="col-md-6 form-group has-label">
+                                        <label>姓名</label>
+                                        <input type="text" class="form-control" v-model="memb.name" readonly>
+                                    </div>
+                                    
+                                    <div class="col-md-6 form-group has-label">
+                                        <label>住址</label>
+                                        <input type="text" class="form-control"  v-model="memb.shipaddr" readonly>
+                                    </div>
+                                    <div class="col-md-6 form-group has-label">
+                                        <label>信箱</label>
+                                        <input type="email" class="form-control" v-model="memb.email" readonly>
+                                    </div>
+                                    <div class="col-md-6 form-group has-label">
+                                        <label>電話</label>
+                                        <input type="text" class="form-control" v-model="memb.phone" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h2 class="h4 d-inline-block">收件人資料</h2>
+                                <div class="form-check d-inline-block ml-3">
+                                    <input class="form-check-input" type="checkbox" id="customCheckbox" v-model="checked">
+                                    <label class="form-check-label" for="customCheckbox">同會員資料</label>
+                                </div>
+                                <div class="shipping_address">
+                                    <div class="row">
+                                        <div class="col-md-6 form-group has-label">
+                                            <label>姓名</label>
+                                            <input type="text" class="form-control" v-model="cust.name" placeholder="姓名" >
+                                        </div>
+                                        <div class="col-md-6 form-group has-label">
+                                            <label>住址</label>
+                                            <input type="text" class="form-control" v-model="cust.shipaddr" placeholder="收件地址">
+                                        </div>
+                                        <div class="col-md-6 form-group has-label">
+                                            <label>信箱</label>
+                                            <input type="email" class="form-control" v-model="cust.email" placeholder="Email">
+                                        </div>
+                                        <div class="col-md-6 form-group has-label">
+                                            <label>電話</label>
+                                            <input type="text" class="form-control" v-model="cust.phone" placeholder="電話">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mt-4 pt-lg-2">訂單</h4>
+                    <form action="#" class="woocommerce-cart-form">
+                        <table class="cart_table mb-20">
+                            <thead>
+                                <tr>
+                                    <th class="cart-col-image">圖片</th>
+                                    <th class="cart-col-productname">商品名稱</th>
+                                    <th class="cart-col-price">單價</th>
+                                    <th class="cart-col-quantity">數量</th>
+                                    <th class="cart-col-total">價格</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="cart item" v-for="(item,index) in cart" :key="index">
+                                    <td data-title="Product">
+                                        <router-link :to="{ name: 'prod_detail', params: { id: item.id }}">
+                                            <img width="91" height="91" :src="item.imgs" alt="Image">
+                                        </router-link>
+                                    </td>
+                                        <td data-title="Name">
+                                            <router-link :to="{ name: 'prod_detail', params: { id: item.id }}">
+                                            {{item.name}}
+                                            </router-link>
+                                        </td>
+                                    <td data-title="Price">
+                                        <span class="amount"><bdi><span>$</span>{{item.price}}</bdi></span>
+                                    </td>
+                                    <td data-title="Quantity">
+                                        <strong class="product-quantity">{{item.qty}}</strong>
+                                    </td>
+                                    <td data-title="Total">
+                                        <span class="amount"><bdi><span>$</span>{{item.qty * item.price}}</bdi></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="checkout-ordertable">
+                                <tr class="order-total">
+                                    <th>Total</th>
+                                    <td data-title="Total" colspan="4"><strong><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>{{total}}</bdi></span></strong>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                    <div class="mt-lg-3 mb-30">
+                        <div class="woocommerce-checkout-payment">
+                            <ul class="wc_payment_methods payment_methods methods">
+                                <li class="wc_payment_method payment_method_cod">
+                                    <input id="payment_method_cod" type="radio" class="input-radio" v-model="paymentcheck">
+                                    <label for="payment_method_cod">Credit Cart</label>
+                                </li>
+                            </ul>
+                            <div class="form-row place-order">
+                                <button @click="order" class="th-btn">下訂</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `,
+            data() {
+                return {
+                    memb: {
+                        id: 1,
+                        name: "測試",
+                        shipaddr: "123",
+                        email: "google",
+                        phone: "0123456789"
+                    },
+                    cust: {
+                        name: "非會員",
+                        shipaddr: "非會員",
+                        email: "kiki77",
+                        phone: "0979"
+                    },
+                    payment: "credit",
+                    paymentcheck: false,
+                    cart: [],
+                    checked: false,
+                    total: 0
+                }
+            },
+            methods: {
+                custDataClear() {
+                    this.cust.name = "";
+                    this.cust.shipaddr = "";
+                    this.cust.email = "";
+                    this.cust.phone = "";
+                },
+                order(event) {
+
+                    if (!this.checked) {
+                        const orderData = {
+                            status: "未付款",
+                            payment: this.payment,
+                            name: this.cust.name,
+                            email: this.cust.email,
+                            tell: this.cust.phone,
+                            addr: this.cust.shipaddr,
+                            amount: this.total,
+                        };
+                        insertOrder(orderData);
+                    }
+                    else {
+                        const orderData = {
+                            membId: this.memb.id,
+                            status: "未付款",
+                            payment: this.payment,
+                            name: this.memb.name,
+                            email: this.memb.email,
+                            tell: this.memb.phone,
+                            addr: this.memb.shipaddr,
+                            amount: this.total,
+                        };
+                        insertOrder(orderData);
+                    }
+                }
+            },
+            mounted() {
+                this.cart = JSON.parse(localStorage.getItem("cart"));
+                this.total = totalUpdate(this.cart);
+                window.accessControl.canAccessCheckout = false;
+            },
 
         }
+        const ordercomplete = {
+            template: `
+            <div class="breadcumb-wrapper " style="background-image:url(assets/img/bg/breadcumb-bg.jpg)">
+                <div class="container">
+                    <div class="breadcumb-content">
+                        <h1 class="breadcumb-title">Checkout</h1>
+                        <ul class="breadcumb-menu">
+                            <li><a href="index.html">Home</a></li>
+                            <li><router-link to="/">Shops</router-link></li>
+                            <li>checkout</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            `
+        }
         const routes = [
-            { path: '/views', component: prod_view },
-            { path: '/detail', component: prod_detail },
-            { path: '/cart', component: cart_view },
-            { path: '/order', component: order_view },
-            { path: '/', redirect: '/views' }  // 默认重定向到 Page 1
+            { path: '/views', name: 'views', component: prod_view },
+            { path: '/detail/:id', name: 'prod_detail', component: prod_detail },
+            { path: '/cart', name: 'cart', component: cart_view },
+            { path: '/checkout', name: 'checkout', component: chekcout },
+            { path: '/ordercomplete', name: 'ordercomplete', component: ordercomplete },
+            { path: '/', redirect: '/views' }
         ];
 
-        // 创建路由实例
-        const router = VueRouter.createRouter({
-            history: VueRouter.createWebHashHistory(), // 使用hash模式
-            routes // 路由配置
-        })
 
-        // 创建 Vue 应用实例并挂载路由
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes
+        })
+        router.beforeEach((to, from, next) => {
+            if (to.name === 'checkout' || to.name === 'ordercomplete') {
+                if (accessControl.canAccessCheckout) {
+                    next();
+                } else {
+                    alert('請從購物車頁面進行結帳。');
+                    next({ name: 'cart' });
+                }
+            } else {
+                next();
+            }
+        });
+
         const app = Vue.createApp({})
         app.use(router)
         app.mount('#app')
@@ -803,9 +1031,6 @@
     <script src="assets/js/circle-progress.js"></script>
 
     <script src="assets/js/matter.min.js"></script>
-    <script src="assets/js/matterjs-custom.js"></script>
-
-
     <!-- nice select -->
     <script src="assets/js/nice-select.min.js"></script>
 

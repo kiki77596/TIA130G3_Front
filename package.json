@@ -16,6 +16,5 @@
     "express": "^4.21.0",
     "mysql": "^2.18.1",
     "tia103_poject_cruiseship_frontend": "file:"
-
   }
 }
