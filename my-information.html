@@ -272,7 +272,9 @@
     </header>
 
     <!--========= Breadcumb 麵包屑 ========== -->
+
     <div id="breadcumb-wrapper"></div>
+
 
     <!--========= Team Area 團隊區 ============-->
     <section class="space">
@@ -311,7 +313,9 @@
     </section>
 
     <!--========= Footer Area 頁尾區 ===========-->
+
     <div id="footer-wrapper footer-layout1"></div>
+
 
     <!--********* Code End  Here  ******** -->
 
@@ -438,26 +442,28 @@
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
 
-    <!-- 動態載入 header 和 footer -->
-    <script>
-        function loadHtml(placeholderId, url) {
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Failed to fetch ${url}`);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById(placeholderId).innerHTML = data;
-                })
-                .catch(error => console.error('Error loading HTML:', error));
-        }
+    <<<<<<< HEAD=======>>>>>>> main
+        <!-- 動態載入 header 和 footer -->
+        <script>
+            function loadHtml(placeholderId, url) {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Failed to fetch ${url}`);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById(placeholderId).innerHTML = data;
+                    })
+                    .catch(error => console.error('Error loading HTML:', error));
+            }
 
-        // 載入 header 和 footer
-        loadHtml('breadcumb-wrapper', 'breadcumb.html');
-        loadHtml('footer-wrapper footer-layout1', 'footer.html');
-    </script>
+            // 載入 header 和 footer
+            loadHtml('breadcumb-wrapper', 'breadcumb.html');
+            loadHtml('footer-wrapper footer-layout1', 'footer.html');
+        </script>
+        <<<<<<< HEAD=======>>>>>>> main
 </body>
 
 </html>
