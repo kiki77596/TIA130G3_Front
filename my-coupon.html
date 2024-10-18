@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tourm - Travel & Tour Booking Agency HTML Template - Destination</title>
+    <title>Tourm - Travel & Tour Booking Agency HTML Template - My account</title>
     <meta name="author" content="Tourm">
     <meta name="description" content="Tourm - Travel & Tour Booking Agency HTML Template ">
     <meta name="keywords" content="Tourm - Travel & Tour Booking Agency HTML Template ">
@@ -32,9 +32,7 @@
     <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <!--==============================
-	  Google Fonts
-	============================== -->
+    <!--=========== Google Fonts ======== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,9 +41,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Manrope:wght@200..800&family=Montez&display=swap"
         rel="stylesheet">
 
-    <!--==============================
-	    All CSS File
-	============================== -->
+    <!--=========== All CSS File ========== -->
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- Fontawesome Icon -->
@@ -57,6 +53,8 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!--自訂-->
+    <link rel="stylesheet" href="./assets/css/member.css">
 
 </head>
 
@@ -65,21 +63,12 @@
     <!--[if lte IE 9]>
     	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   	<![endif]-->
-
-
-    <!--********************************
-   		Code Start From Here 
-	******************************** -->
-
+    <!--********* Code Start From Here ********** -->
     <div class="magic-cursor relative z-10">
         <div class="cursor"></div>
         <div class="cursor-follower"></div>
     </div>
-
-
-    <!--==============================
-     Preloader
-  ==============================-->
+    <!--=====   Preloader  預先載入器 =============-->
     <div id="preloader" class="preloader ">
         <button class="th-btn preloaderCls">Cancel Preloader </button>
         <div class="preloader-inner">
@@ -102,9 +91,8 @@
             </div>
         </div>
 
-    </div> <!--==============================
-    Sidemenu
-============================== -->
+    </div>
+    <!--======== Sidemenu 側邊菜單 =========== -->
     <div class="sidemenu-wrapper sidemenu-info ">
         <div class="sidemenu-content">
             <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
@@ -192,9 +180,8 @@
             <input type="text" placeholder="What are you looking for?">
             <button type="submit"><i class="fal fa-search"></i></button>
         </form>
-    </div><!--==============================
-    Mobile Menu
-  ============================== -->
+    </div>
+    <!--========= Mobile Menu  行動選單======== -->
     <div class="th-menu-wrapper onepage-nav">
         <div class="th-menu-area text-center">
             <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
@@ -213,9 +200,8 @@
                 </ul>
             </div>
         </div>
-    </div><!--==============================
-    	Header Area
-    ==============================-->
+    </div>
+    <!--========= Header Area 標題區   =======-->
     <header class="th-header header-layout1">
         <div class="header-top">
             <div class="container th-container">
@@ -236,8 +222,8 @@
                     <div class="col-auto">
                         <div class="header-right">
                             <div class="header-links">
-                                <a href="#login-form" class="popup-content">Sign In / Register<i
-                                        class="fa-regular fa-user"></i></a>
+                                <a href="#login-form" class="popup-content">會員管理<i class="fa-regular fa-user"></i></a>
+
                             </div>
                         </div>
                     </div>
@@ -282,136 +268,72 @@
             </div>
         </div>
     </header>
-    <!--==============================
-    Breadcumb
-============================== -->
-    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.jpg">
-        <div class="container">
-            <div class="breadcumb-content">
-                <h1 class="breadcumb-title">行程</h1>
-                <ul class="breadcumb-menu">
-                    <li><a href="home-travel.html">Home</a></li>
-                    <li>所有航線</li>
-                </ul>
-            </div>
-        </div>
-    </div><!--==============================
-Product Area
-==============================-->
+
+    <!--========= Breadcumb 麵包屑 ========== -->
+    <div id="breadcumb-wrapper"></div>
+
+    <!--========= Team Area 團隊區 ============-->
     <section class="space">
         <div class="container">
-            <!-- TODO  改浮動 -->
-            <div class="row">
-                <div class="col-xxl col-lg">
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade active show" id="tab-grid" role="tabpanel"
-                            aria-labelledby="tab-destination-grid">
-                            <div class="row gy-30">
-                                <div class="col-xxl-4 col-xl-3 col-sm-12">
-                                    <div class="tour-box th-ani">
-                                        <div class="tour-box_img global-img">
-                                            <img src="assets/img/tour/北海道.jpg" alt="image">
-                                        </div>
-                                        <div class="tour-content">
-
-                                            <h3 class="box-title"><a href="tour-guider-details.html">北海道</a></h3>
-
-                                            <div class="tour-rating">
-                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                    <span style="width:100%">Rated
-                                                        <strong class="rating">5.00</strong> out of 5 based on <span
-                                                            class="rating">4.8</span>(4.8
-                                                        Rating)</span>
-                                                </div>
-                                                <div class="woocommerce-review-link"><span class="count">(4.7
-                                                        Rating)</span>
-                                                </div>
-                                            </div>
-
-                                            <h4 class="tour-box_price"><span class="currency">$1280.00</span>/Person
-                                            </h4>
-                                            <div class="tour-action">
-                                                <span><i class="fa-light fa-clock"></i>8 Days</span>
-                                                <a href="./journey.html" class="th-btn style4 th-icon">我要報名</a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xxl-4 col-xl-6">
-                                    <div class="tour-box th-ani">
-                                        <div class="tour-box_img global-img">
-                                            <img src="assets/img/tour/沖繩1.jpeg" alt="image">
-                                        </div>
-                                        <div class="tour-content">
-
-                                            <h3 class="box-title"><a href="tour-guider-details.html">沖繩</a></h3>
-
-                                            <div class="tour-rating">
-                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                    <span style="width:100%">
-                                                    </span>
-                                                </div>
-                                                <div class="woocommerce-review-link"><span class="count">(4.8
-                                                        Rating)</span>
-                                                </div>
-                                            </div>
-                                            <h4 class="tour-box_price"><span class="currency">$880.00</span>/Person</h4>
-                                            <div class="tour-action">
-                                                <span><i class="fa-light fa-clock"></i>7 Days</span>
-
-                                                <a href="./journey.html" class="th-btn style4 th-icon">我要報名</a>
-
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xxl-4 col-xl-6">
-                                    <div class="tour-box th-ani">
-                                        <div class="tour-box_img global-img">
-                                            <img src="assets/img/tour/熊本城.jpg" alt="image">
-                                        </div>
-                                        <div class="tour-content">
-
-                                            <h3 class="box-title"><a href="tour-guider-details.html">熊本城</a></h3>
-
-
-
-                                            <div class="tour-rating">
-                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
-                                                    <span style="width:100%">Rated
-                                                        <strong class="rating">5.00</strong> out of 5 based on <span
-                                                            class="rating">4.8</span>(4.8
-                                                        Rating)</span>
-                                                </div>
-                                                <div class="woocommerce-review-link"><span class="count">(4.6
-                                                        Rating)</span>
-                                                </div>
-                                            </div>
-
-                                            <h4 class="tour-box_price"><span class="currency">$780.00</span>/Person</h4>
-                                            <div class="tour-action">
-                                                <span><i class="fa-light fa-clock"></i>5 天</span>
-                                                <a href="./journey.html" class="th-btn style4 th-icon">我要報名</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+            <div class="cupon">
+                <!-- <div class="bg-white min-w-[255px] pt-5 pl-10 pb-3 rounded-soft">
+                    <h2 class="font-bold mb-[11px] text-gray-900 text-xl">折扣碼管理</h2>
+                    <ul class="text-base text-gray-900 rounded-soft -ml-6">
+                        <li class="hover:text-green-dark flex-auto cursor-pointer"><span
+                                class="flex items-center h-full py-[14px] pl-[25px]">eMoney查詢</span></li>
+                        <li class="font-bold text-green-dark bg-green-100 rounded-l-[100px] flex-auto cursor-pointer">
+                            <span class="flex items-center h-full py-[14px] pl-[25px]">折扣碼管理</span>
+                        </li>
+                    </ul>
+                </div> -->
+                <div class="flex flex-col justify-between bg-white rounded-soft h-[175px] w-[825px] pt-5 mb-[15px]">
+                    <div class="flex justify-between pl-[30px] pr-6">
+                        <div>
+                            <h2 class="font-bold mb-1.5 text-2xl text-gray-900">折扣碼登錄</h2>
+                            <p class="text-sm text-gray">使用折扣碼，幫你旅遊省荷包</p>
+                        </div>
+                        <div>
+                            <div class="flex pt-3">
+                                <div class="enter"><input id="claimDiscountCode" name="claimDiscountCode" type="text"
+                                        class="ez-input" placeholder="請輸入折扣碼" value="" /></div>
+                                <button type="button" class="ez-btn primary-lg" style="min-width:100px">領取</button>
                             </div>
                         </div>
                     </div>
+                    <div class="flex justify-between items-center pl-[30px] pr-6 border-t-2 pt-2">
+                        <div class="discount-tab">
+                            <ul class="ez-tab-content ez-tab-common-v1">
+                                <li class="active"><span class="ez-tab-item">可使用</span></li>
+                                <li class=""><span class="ez-tab-item">已使用</span></li>
+                                <li class=""><span class="ez-tab-item">已過期</span></li>
+                            </ul>
+                        </div>
+                        <!-- <a target="_blank" rel="noopener noreferrer" href="/member/serviceFAQ?tab=membership&amp;nav=discountInfo">
+                            <div class="flex justify-between items-center cursor-pointer text-gray-900 hover:text-green-dark pb-2">
+                                <span class="text-sm mr-1">說明</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="w-[18px]" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M12.089 18a.943.943 0 0 0 .694-.28.943.943 0 0 0 .281-.695v-5.261a.887.887 0 0 0-.296-.665.958.958 0 0 0-.68-.281.943.943 0 0 0-.694.28.943.943 0 0 0-.28.695v5.261c0 .256.098.478.295.665a.96.96 0 0 0 .68.281zM12 8.749c.315 0 .576-.099.783-.296.207-.197.31-.453.31-.768 0-.316-.103-.582-.31-.798A1.037 1.037 0 0 0 12 6.562c-.315 0-.576.108-.783.325-.207.216-.31.482-.31.798 0 .315.103.571.31.768.207.197.468.296.783.296zM12 24c-1.695 0-3.276-.305-4.744-.916a11.665 11.665 0 0 1-3.813-2.527 11.665 11.665 0 0 1-2.527-3.813C.306 15.276 0 13.694 0 12c0-1.675.305-3.246.916-4.714a11.665 11.665 0 0 1 2.527-3.813A11.86 11.86 0 0 1 7.256.93C8.724.311 10.306 0 12 0c1.675 0 3.246.31 4.714.931a11.86 11.86 0 0 1 3.813 2.542A11.902 11.902 0 0 1 23.07 7.27c.619 1.459.93 3.035.93 4.73 0 1.695-.31 3.276-.931 4.744a11.86 11.86 0 0 1-2.542 3.813 11.665 11.665 0 0 1-3.813 2.527c-1.468.61-3.04.916-4.714.916zm0-2.01c2.739 0 5.089-.975 7.05-2.926 1.96-1.95 2.94-4.305 2.94-7.064 0-2.739-.98-5.089-2.94-7.05-1.961-1.96-4.311-2.94-7.05-2.94s-5.089.98-7.05 2.94C2.99 6.912 2.01 9.262 2.01 12c0 2.759.98 5.113 2.94 7.064 1.961 1.95 4.311 2.926 7.05 2.926z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+
+                <!-- 當沒有優惠碼的情況 -->
+                <div class="no-coupons">
+                    <img src="./assets/img/member/coupon.png" alt="No Coupons">
+                    <p>尚無折扣碼，來首頁看看有什麼優惠吧！</p>
+                    <a href="./index.html">回到首頁</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!--********************************
-			Code End  Here 
-	******************************** -->
+    <!--========= Footer Area 頁尾區 ===========-->
+    <div id="footer-wrapper footer-layout1"></div>
+
+    <!--********* Code End  Here  ******** -->
 
     <!-- Scroll To Top -->
     <div class="scroll-top">
@@ -421,126 +343,88 @@ Product Area
             </path>
         </svg>
     </div>
-    <!--==============================
-modal Area  
-==============================-->
+    <!--========== modal Area  登入/註冊==============-->
+
     <div id="login-form" class="popup-login-register mfp-hide">
-        <ul class="nav" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-menu" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                    type="button" role="tab" aria-controls="pills-home" aria-selected="false">Login</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-menu active" id="pills-profile-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                    aria-selected="true">Register</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <h3 class="box-title mb-30">Sign in to your account</h3>
-                <div class="th-login-form">
-                    <form action="mail.php" method="POST" class="login-form ajax-contact">
-                        <div class="row">
-                            <div class="form-group col-12">
-                                <label>Username or email</label>
-                                <input type="text" class="form-control" name="email" id="email" required="required">
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Password</label>
-                                <input type="password" class="form-control" name="pasword" id="pasword"
-                                    required="required">
-                            </div>
+        <div class="servicelist"
+            data-track-action="{&quot;val&quot;:&quot;MENU&quot;,&quot;attr&quot;:&quot;text&quot;}">
+            <!-- -->
+            <ul class="generalLogin" data-track-action="{&quot;section&quot;:&quot;會員服務&quot;}">
+                <li class="logined dashboard">
+                    <a class="ezTag" href="./my-frontpage.html" title="會員服務">會員中心</a>
+                </li>
+                <li class="logined discount-manage">
+                    <a class="ezTag" href="./my-coupon.html" title="折扣碼管理">折扣碼管理</a>
+                </li>
+                <li class="logined wishlist">
+                    <a class="ezTag" href="./" title="商品收藏">訂單查詢</a>
+                </li>
+                <li class="logined membership-records">
+                    <a class="ezTag" href="./my-information.html" title="管理帳戶">資料修改</a>
+                </li>
 
-                            <div class="form-btn mb-20 col-12">
-                                <button class="th-btn btn-fw th-radius2 ">Send Message</button>
-                            </div>
-                        </div>
-                        <div id="forgot_url">
-                            <a href="my-account.html">Forgot password?</a>
-                        </div>
-                        <p class="form-messages mb-0 mt-3"></p>
-                    </form>
-                </div>
-            </div>
-            <div class="tab-pane fade active show" id="pills-profile" role="tabpanel"
-                aria-labelledby="pills-profile-tab">
-                <h3 class="th-form-title mb-30">Sign in to your account</h3>
-                <form action="mail.php" method="POST" class="login-form ajax-contact">
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label>Username*</label>
-                            <input type="text" class="form-control" name="usename" id="usename" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label>First name*</label>
-                            <input type="text" class="form-control" name="firstname" id="firstname" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label>Last name*</label>
-                            <input type="text" class="form-control" name="lastname" id="lastname" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label for="new_email">Your email*</label>
-                            <input type="text" class="form-control" name="new_email" id="new_email" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label for="new_email_confirm">Confirm email*</label>
-                            <input type="text" class="form-control" name="new_email_confirm" id="new_email_confirm"
-                                required="required">
-                        </div>
-                        <div class="statement">
-                            <span class="register-notes">A password will be emailed to you.</span>
-                        </div>
-
-                        <div class="form-btn mt-20 col-12">
-                            <button class="th-btn btn-fw th-radius2 ">Sign up</button>
-                        </div>
-                    </div>
-                    <p class="form-messages mb-0 mt-3"></p>
-                </form>
+            </ul>
+            <div class="login" data-track-action="{&quot;section&quot;:&quot;會員服務&quot;}">
+                <button type="button" class="signout" title="登出">登出</button>
             </div>
         </div>
-    </div>
 
-    <!--==============================
-    All Js File
-============================== -->
-    <!-- Jquery -->
-    <!-- Jquery -->
-    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <!-- Swiper Js -->
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Magnific Popup -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!-- Counter Up -->
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <!-- Range Slider -->
-    <script src="assets/js/jquery-ui.min.js"></script>
-    <!-- imagesloaded -->
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-    <!-- isotope -->
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <!-- gsap -->
-    <script src="assets/js/gsap.min.js"></script>
+        <!--========== All Js File===========-->
+        <!-- Jquery -->
+        <!-- Jquery -->
+        <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+        <!-- Swiper Js -->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <!-- Magnific Popup -->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <!-- Counter Up -->
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <!-- Range Slider -->
+        <script src="assets/js/jquery-ui.min.js"></script>
+        <!-- imagesloaded -->
+        <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+        <!-- isotope -->
+        <script src="assets/js/isotope.pkgd.min.js"></script>
+        <!-- gsap -->
+        <script src="assets/js/gsap.min.js"></script>
 
-    <!-- circle-progress -->
-    <script src="assets/js/circle-progress.js"></script>
+        <!-- circle-progress -->
+        <script src="assets/js/circle-progress.js"></script>
 
-    <script src="assets/js/matter.min.js"></script>
-    <script src="assets/js/matterjs-custom.js"></script>
+        <script src="assets/js/matter.min.js"></script>
+        <script src="assets/js/matterjs-custom.js"></script>
 
 
-    <!-- nice select -->
-    <script src="assets/js/nice-select.min.js"></script>
+        <!-- nice select -->
+        <script src="assets/js/nice-select.min.js"></script>
 
 
+        <!-- Main Js File -->
+        <script src="assets/js/main.js"></script>
 
 
-    <!-- Main Js File -->
-    <script src="assets/js/main.js"></script>
+        <!-- 動態載入 header 和 footer -->
+        <script>
+            function loadHtml(placeholderId, url) {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Failed to fetch ${url}`);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById(placeholderId).innerHTML = data;
+                    })
+                    .catch(error => console.error('Error loading HTML:', error));
+            }
+
+            // 載入 header 和 footer
+            loadHtml('breadcumb-wrapper', 'breadcumb.html');
+            loadHtml('footer-wrapper footer-layout1', 'footer.html');
+        </script>
 </body>
 
 </html>
