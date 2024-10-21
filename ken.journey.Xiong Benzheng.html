@@ -225,7 +225,7 @@
                         <div class="header-right">
                             <div class="header-links">
                                 <a href="#login-form" class="popup-content">登入 / 註冊<i
-                                        class="fa-regular fa-user"></i></a>
+                                        class="fa-regular fa-user"></i></a> 
                             </div>
                         </div>
                     </div>
@@ -277,54 +277,73 @@
 
 
     <!--========= Team Area 團隊區 ============-->
-    <section class="space">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="th-account-form">
-                        <h2>報名成功！</h2>
-                        <p>感謝您提交報名資料，我們已收到您的申請。以下是您的報名資訊：</p>
-                        
-                        <form>
-                            <label for="customerName">姓名:</label>
-                            <input type="text" id="customerName" name="customerName" value="${customerName}" readonly>
-    
-                            <label for="customerAddress">地址:</label>
-                            <input type="text" id="customerAddress" name="customerAddress" value="${customerAddress}" readonly>
-    
-                            <label for="customerPhone">電話號碼:</label>
-                            <input type="tel" id="customerPhone" name="customerPhone" value="${customerPhone}" readonly>
-    
-                            <label for="customerEmail">電子郵件:</label>
-                            <input type="email" id="customerEmail" name="customerEmail" value="${customerEmail}" readonly>
-    
-                            <label for="couponCode">優惠券:</label>
-                            <input type="text" id="couponCode" name="couponCode" value="${couponCode}" readonly>
-    
-                            <label for="roomType">房間類型:</label>
-                            <input type="text" id="roomType" name="roomType" value="${roomType}" readonly>
-                        </form>
-    
-                        <p>您的護照影本已成功上傳，我們將盡快處理您的報名申請。</p>
-    
-                        <h3>下一步行動</h3>
-                        <p>我們的工作人員將在 2-3 個工作天內與您聯繫，確認您的報名狀況及付款事宜。請隨時檢查您的電子郵件以獲得進一步通知。</p>
-    
-                        <p>若您有任何問題，請透過以下方式聯絡我們：</p>
-                        <ul>
-                            <li>客服電話: 02-1234-5678</li>
-                            <li>客服信箱: support@cruise.com</li>
-                        </ul>
-    
-                        <p>再次感謝您的報名，我們期待與您展開愉快的航程！</p>
-    
-                        <button onclick="window.location.href='index.html';">返回首頁</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <body>
 
+        <header>
+            <h1>探索熊本</h1>
+        </header>
+        
+        <main>
+            <p>熊本以其壯麗的城堡、自然美景、豐富的文化和美味的料理而聞名，是理想的旅遊目的地。</p>
+            
+            <img src="/assets/img/ken/3.jpg" alt="熊本風景" width="300" height="200">
+    
+            
+            <h2>行程規劃</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>活動</th>
+                        <th>地點</th>
+                        <th>備註</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>抵達熊本</td>
+                        <td>熊本市</td>
+                        <td>熊本的首府，以歷史和文化聞名。</td>
+                    </tr>
+                    <tr>
+                        <td>參觀熊本城</td>
+                        <td>熊本市</td>
+                        <td>日本三大名城之一，壯麗的建築和美麗的園區。</td>
+                    </tr>
+                    <tr>
+                        <td>探索水前寺成趣園</td>
+                        <td>熊本市</td>
+                        <td>擁有美麗的日式庭園和古老的茶室。</td>
+                    </tr>
+                    <tr>
+                        <td>品嚐熊本拉麵</td>
+                        <td>熊本市</td>
+                        <td>著名的豚骨拉麵，濃郁的湯頭令人難忘。</td>
+                    </tr>
+                    <tr>
+                        <td>參觀熊本動物園</td>
+                        <td>熊本市</td>
+                        <td>家庭友好的動物園，適合全家共遊。</td>
+                    </tr>
+                    <tr>
+                        <td>返回熊本，結束行程</td>
+                        <td>熊本市</td>
+                        <td>整理行李，準備回程。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        
+        <footer>
+            &copy; 2024 熊本旅遊
+        </footer>
+        <button onclick="window.location.href='destination.html';">返回行程</button>
+        <button onclick="window.location.href='ken.order.html';">訂購頁面</button>
+    </body>
+        
+        
+    
+    
+    
     <!--========= Footer Area 頁尾區 ===========-->
 
     <div id="footer-wrapper footer-layout1"></div>
